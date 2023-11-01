@@ -1,6 +1,7 @@
-  name: Dummy
+  name: Update Data
 
   on:
+    
     workflow_dispatch:
 
   jobs:
