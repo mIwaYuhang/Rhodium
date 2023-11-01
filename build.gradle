@@ -7,7 +7,6 @@ plugins {
     id 'com.diffplug.spotless' version '6.11.0'
 
     id 'eclipse'
-
     id 'idea'
 
     id 'signing'
@@ -55,6 +54,51 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.2'
     implementation platform('com.fasterxml.jackson:jackson-bom:2.14.0')
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.2'
+
+    // Java HTTP server
+    implementation group: 'io.javalin', name: 'javalin', version: '5.6.3'
+    // Java WebSocket server & client library.
+    implementation group: 'org.java-websocket', name: 'Java-WebSocket', version: '1.5.2'
+
+    // HTTP client
+    testImplementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.10.0'
+
+    // Lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
+}
+
+configurations.configureEach {
+    exclude group: 'org.slf4j', module: 'slf4j'
+}
+
+jar {
+    exclude '*.proto'
+
+    manifest {
+        attributes 'Main-Class': 'emu.rhodium.Rhodium'
+    }
+
+    archiveBaseName = 'rhodium'
+    if (project.hasProperty('jarFilename')) {
+        archiveFileName = "${jarFilename}.${archiveExtension}"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
+    from('src/main/java') {
+        include '*.xml'
+    }
+
+    destinationDirectory = file('.')
 }
 
 test {
