@@ -1,4 +1,6 @@
-img
+![A gacha game server implementation.](/assets/images/banner.png)
+
+
 
 # Rhodium
 
