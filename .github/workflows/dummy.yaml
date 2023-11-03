@@ -16,7 +16,7 @@
         - uses: actions/checkout@v3
           with:
             ref: main
-        - run: rm -rf data/excel/
+        - run: rm -rf src/main/java/emu/rhodium/game/data/
         - run: mkdir -p tmp/
         - uses: actions/checkout@v3
           with:
