@@ -1,13 +1,7 @@
 package emu.rhodium.game;
 
-import emu.rhodium.inject.InjectManager;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 public class GameManager {
-    public static void GameInit() {
-        if (InjectManager.GetInjectionSuccess()) {
-            System.out.println("Injection failed.");
-        } else {
-            System.out.println("Game server initialized.");
-        }
-    }
 }
