@@ -23,7 +23,7 @@
             repository: Kengxxiao/ArknightsGameData
             path: tmp/
             sparse-checkout: zh_CN/gamedata/excel/
-        - run: mv tmp/zh_CN/gamedata/excel/ src/main/java/emu/rhodium/game/data/
+        - run: mv tmp/zh_CN/gamedata/excel/ data/
         - run: rm -rf tmp/
         - run: git config --global user.name 'Automator'
         - run: git config --global user.email 'automator@users.noreply.github.com'
